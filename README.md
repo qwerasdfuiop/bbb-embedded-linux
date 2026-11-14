@@ -4,7 +4,7 @@ BeagleBone Black(BBB) 기반 Embedded Linux BSP부터 커널 디바이스 드라
 
 PC에서 TCP로 `LED ON` / `LED OFF` 명령을 보내면 BBB에 연결된 5643AS 4-digit 7-segment 디스플레이에 ` On ` / 소등 / `Err ` 를 표시합니다.
 
-> BSP 개발 포트폴리오를 목표로, 기능을 무작정 늘리기보다 한 단계씩 구현·검증하며 완성도를 높이는 것을 원칙으로 합니다.
+> **구현 완료** — BSP 구성부터 Device Tree, 커널 드라이버, 멀티스레드 애플리케이션, 시스템 통합·최종 검증까지 전 계층의 구현을 완료한 BSP 개발 포트폴리오 프로젝트입니다.
 
 ## 시스템 구성
 
@@ -175,13 +175,15 @@ repo/
         └── am335x-boneblack.dts   # sevenseg pinmux + ext_led 노드 추가
 ```
 
-## 현재 상태 및 로드맵
+## 구현 현황
 
-1. ✅ **BSP 구성** — Buildroot 기반 U-Boot, Kernel, RootFS 빌드 및 부팅
-2. 🔄 **Kernel** — 커널 설정 변경, 모듈 빌드 및 검증
-3. ✅ **Device Driver** — Device Tree + GPIO(gpiod) 7-segment 드라이버 개발
-4. ✅ **Linux Application** — TCP/IP 통신, 4개 스레드, Mutex/CondVar 기반 동기화
-5. ⏳ **System Integration** — 드라이버와 애플리케이션 통합 및 최종 검증
+모든 단계의 구현과 검증이 완료되었습니다.
+
+1. ✅ **BSP 구성 완료** — Buildroot 기반 U-Boot, Kernel, RootFS 빌드 및 BeagleBone Black 부팅 검증
+2. ✅ **Kernel 완료** — 커널 설정 변경(`CONFIG_BBB_LED=y`), 드라이버 빌드 및 동작 검증
+3. ✅ **Device Driver 완료** — Device Tree + GPIO(gpiod) 기반 5643AS 7-segment 드라이버 개발 및 검증
+4. ✅ **Linux Application 완료** — TCP/IP 통신, 4개 스레드, Mutex/CondVar 기반 동기화 구현 및 검증
+5. ✅ **System Integration 완료** — 드라이버와 애플리케이션 통합, PC → TCP → BBB → `/dev/bbb_led` → 7-segment 표시까지 End-to-End 최종 검증 완료
 
 ## 제한 사항
 
